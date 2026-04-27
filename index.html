@@ -1,0 +1,1029 @@
+<!-- DEMO — Diseño conceptual por LhabiaStudio. No autorizado para uso comercial -->
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Centro Inti — Pilates & Yoga Madrid</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --accent:       #E8724A;
+      --accent-dark:  #C45530;
+      --accent-light: #FFF5F2;
+      --accent-light2: #FFF0EA;
+      --white:        #FFFFFF;
+      --text:         #2D2926;
+      --text-muted:   #7A6E68;
+      --border:       #F0DDD7;
+      --gold:         #F5A623;
+      --gold-light:   #FFD580;
+      --success:      #27AE60;
+      --radius:       14px;
+      --shadow:       0 4px 24px rgba(232,114,74,0.12);
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Nunito', sans-serif;
+      color: var(--text);
+      background: var(--white);
+      overflow-x: hidden;
+      line-height: 1.65;
+    }
+
+    /*  UTILITIES  */
+    .container { max-width: 1080px; margin: 0 auto; padding: 0 20px; }
+    .section-tag {
+      display: inline-block;
+      background: var(--accent);
+      color: var(--white);
+      font-size: 11px;
+      font-weight: 800;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      padding: 4px 12px;
+      border-radius: 20px;
+      margin-bottom: 14px;
+    }
+    .section-title {
+      font-size: clamp(1.8rem, 4vw, 2.2rem);
+      font-weight: 700;
+      line-height: 1.2;
+      margin-bottom: 10px;
+      letter-spacing: 0.02em;
+    }
+    .section-sub {
+      font-size: 1rem;
+      color: var(--text-muted);
+      max-width: 520px;
+      line-height: 1.65;
+    }
+    .fade-in { opacity: 0; transform: translateY(24px); transition: opacity 0.55s ease, transform 0.55s ease; }
+    .fade-in.visible { opacity: 1; transform: translateY(0); }
+
+    /*  ICON  */
+    .icon {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      vertical-align: middle;
+      margin-right: 6px;
+      color: var(--accent);
+      flex-shrink: 0;
+    }
+
+    /*  HERO  */
+    #hero {
+      min-height: 100svh;
+      background: linear-gradient(145deg, var(--accent-dark) 0%, var(--accent) 40%, #F5A030 75%, #F5C58A 100%);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      position: relative;
+      overflow: hidden;
+      padding: 96px 20px 60px;
+    }
+    #hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(circle at 20% 30%, rgba(255,255,255,0.08) 0%, transparent 50%),
+        radial-gradient(circle at 80% 70%, rgba(196,85,48,0.3) 0%, transparent 50%);
+    }
+    #hero::after {
+      content: '';
+      position: absolute;
+      bottom: -80px; right: -80px;
+      width: 380px; height: 380px;
+      border-radius: 50%;
+      border: 2px solid rgba(255,255,255,0.12);
+    }
+    .hero-inner { position: relative; z-index: 1; max-width: 640px; }
+    .hero-eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(255,255,255,0.18);
+      backdrop-filter: blur(6px);
+      border: 1px solid rgba(255,255,255,0.25);
+      color: var(--white);
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      padding: 6px 14px;
+      border-radius: 20px;
+      margin-bottom: 20px;
+    }
+    .hero-eyebrow span { width: 6px; height: 6px; background: var(--gold-light); border-radius: 50%; display: inline-block; }
+    .hero-title {
+      font-size: clamp(2.8rem, 8vw, 5rem);
+      font-weight: 900;
+      color: var(--white);
+      line-height: 1.1;
+      margin-bottom: 8px;
+      letter-spacing: -0.02em;
+    }
+    .hero-subtitle {
+      font-size: clamp(1rem, 3vw, 1.3rem);
+      color: rgba(255,255,255,0.85);
+      font-weight: 600;
+      margin-bottom: 24px;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+    }
+    .hero-tagline {
+      font-size: clamp(1.05rem, 2.5vw, 1.25rem);
+      color: var(--white);
+      font-weight: 700;
+      line-height: 1.5;
+      margin-bottom: 12px;
+      max-width: 480px;
+    }
+    .hero-tagline strong {
+      background: rgba(255,255,255,0.22);
+      padding: 2px 8px;
+      border-radius: 6px;
+    }
+    .hero-sub-tagline {
+      font-size: 0.95rem;
+      color: rgba(255,255,255,0.75);
+      margin-bottom: 36px;
+      max-width: 440px;
+      line-height: 1.65;
+    }
+    .cta-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      background: var(--white);
+      color: var(--accent);
+      font-family: 'Nunito', sans-serif;
+      font-size: 1rem;
+      font-weight: 900;
+      padding: 14px 28px;
+      min-height: 48px;
+      border-radius: 8px;
+      text-decoration: none;
+      border: none;
+      cursor: pointer;
+      box-shadow: 0 8px 32px rgba(0,0,0,0.15);
+      transition: all 0.2s ease;
+    }
+    .cta-btn:hover { transform: translateY(-2px); box-shadow: 0 12px 40px rgba(0,0,0,0.2); }
+    .cta-btn:focus-visible { outline: 3px solid var(--white); outline-offset: 3px; }
+    .cta-btn:active { transform: translateY(0); box-shadow: 0 4px 16px rgba(0,0,0,0.15); }
+    .cta-btn svg { width: 18px; height: 18px; }
+    .hero-stats {
+      display: flex;
+      gap: 28px;
+      margin-top: 40px;
+      flex-wrap: wrap;
+    }
+    .hero-stat { color: var(--white); }
+    .hero-stat-num { font-size: 1.6rem; font-weight: 900; line-height: 1; }
+    .hero-stat-label {
+      font-size: 0.78rem;
+      color: rgba(255,255,255,0.7);
+      font-weight: 600;
+      margin-top: 2px;
+      display: flex;
+      align-items: center;
+      gap: 4px;
+    }
+
+    /*  CLASES  */
+    #clases { background: var(--white); padding: 96px 0; }
+    .clases-header { margin-bottom: 40px; }
+    .clases-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 22px;
+    }
+    .clase-card {
+      background: var(--white);
+      border: 1.5px solid var(--border);
+      border-radius: var(--radius);
+      padding: 32px;
+      transition: transform 0.25s, box-shadow 0.25s, border-color 0.25s;
+      position: relative;
+      overflow: hidden;
+      box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+    }
+    .clase-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 4px;
+      background: var(--accent);
+    }
+    .clase-card:hover { transform: translateY(-4px); box-shadow: var(--shadow); border-color: var(--accent); }
+    .clase-icon {
+      width: 48px; height: 48px;
+      background: var(--accent-light);
+      border-radius: 12px;
+      display: flex; align-items: center; justify-content: center;
+      color: var(--accent);
+      margin-bottom: 16px;
+    }
+    .clase-nombre { font-size: 1.15rem; font-weight: 700; margin-bottom: 8px; }
+    .clase-desc { font-size: 0.9rem; color: var(--text-muted); line-height: 1.65; margin-bottom: 18px; }
+    .clase-meta {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+    .meta-pill {
+      font-size: 0.75rem;
+      font-weight: 700;
+      padding: 4px 10px;
+      border-radius: 20px;
+      background: var(--accent-light);
+      color: var(--accent-dark);
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+    }
+    .meta-pill.plazas { background: #FFF3E0; color: #B85C00; }
+    .meta-pill.nivel  { background: #F0FFF4; color: #276749; }
+
+    /*  HORARIO  */
+    #horario { background: var(--accent-light); padding: 96px 0; }
+    .horario-header { margin-bottom: 36px; }
+    .table-wrap { overflow-x: auto; border-radius: var(--radius); box-shadow: var(--shadow); }
+    .horario-table {
+      width: 100%;
+      border-collapse: collapse;
+      background: var(--white);
+      font-size: 0.85rem;
+      min-width: 600px;
+    }
+    .horario-table th {
+      background: var(--accent);
+      color: var(--white);
+      font-weight: 800;
+      padding: 14px 16px;
+      text-align: center;
+      font-size: 0.78rem;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+    }
+    .horario-table th:first-child {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .horario-table td {
+      padding: 12px 14px;
+      border-bottom: 1px solid #F5EDE9;
+      text-align: center;
+      color: var(--text-muted);
+      font-size: 0.82rem;
+    }
+    .horario-table tr:last-child td { border-bottom: none; }
+    .horario-table td:first-child {
+      font-weight: 800;
+      color: var(--text);
+      text-align: left;
+      background: #FFF9F7;
+      font-size: 0.82rem;
+    }
+    .horario-table tr:hover td { background: var(--accent-light); }
+    .horario-table tr:hover td:first-child { background: #FFE8DE; }
+    .slot {
+      display: inline-flex;
+      flex-direction: column;
+      gap: 2px;
+    }
+    .slot-time { font-weight: 700; color: var(--accent-dark); font-size: 0.82rem; }
+    .slot-info { font-size: 0.72rem; color: var(--text-muted); }
+    .empty-cell { color: #D0C4BE; font-size: 1rem; }
+
+    /*  PRECIOS  */
+    #precios { background: var(--white); padding: 96px 0; }
+    .precios-header { margin-bottom: 40px; }
+    .precios-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 24px;
+      max-width: 760px;
+    }
+    .precio-card {
+      border-radius: var(--radius);
+      padding: 32px 28px;
+      border: 2px solid var(--border);
+      position: relative;
+      transition: transform 0.2s;
+      box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+    }
+    .precio-card.destacado {
+      border-color: var(--accent);
+      background: linear-gradient(160deg, var(--accent-light) 0%, var(--accent-light2) 100%);
+      transform: scale(1.03);
+      box-shadow: 0 12px 48px rgba(232,114,74,0.2);
+    }
+    .precio-card.destacado::before {
+      content: 'MEJOR OPCIÓN';
+      position: absolute;
+      top: -14px; left: 50%; transform: translateX(-50%);
+      background: var(--accent);
+      color: var(--white);
+      font-size: 10px;
+      font-weight: 900;
+      letter-spacing: 0.12em;
+      padding: 5px 16px;
+      border-radius: 20px;
+      white-space: nowrap;
+    }
+    .precio-tipo { font-size: 0.78rem; font-weight: 800; text-transform: uppercase; letter-spacing: 0.1em; color: var(--text-muted); margin-bottom: 8px; }
+    .precio-nombre { font-size: 1.25rem; font-weight: 700; margin-bottom: 4px; }
+    .destacado .precio-nombre { color: var(--accent-dark); }
+    .precio-amount {
+      font-size: 3rem;
+      font-weight: 900;
+      line-height: 1;
+      margin: 14px 0 4px;
+      color: var(--text);
+    }
+    .destacado .precio-amount { color: var(--accent); }
+    .precio-amount sup { font-size: 1.2rem; vertical-align: super; }
+    .precio-unit { font-size: 0.85rem; color: var(--text-muted); font-weight: 600; margin-bottom: 6px; }
+    .precio-orientativo { font-size: 0.72rem; color: var(--text-muted); font-style: italic; margin-bottom: 18px; }
+    .ahorro-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: #FFF3CD;
+      border: 1.5px solid var(--gold);
+      color: #92620A;
+      font-size: 0.78rem;
+      font-weight: 800;
+      padding: 6px 14px;
+      border-radius: 20px;
+      margin-bottom: 20px;
+    }
+    .precio-features { list-style: none; display: flex; flex-direction: column; gap: 9px; margin-bottom: 24px; }
+    .precio-features li {
+      display: flex;
+      align-items: flex-start;
+      gap: 8px;
+      font-size: 0.88rem;
+      color: var(--text-muted);
+      line-height: 1.5;
+    }
+    .precio-features li .icon { margin-top: 1px; }
+    .destacado .precio-features li { color: var(--text); }
+    .precio-cta {
+      display: block;
+      text-align: center;
+      background: var(--border);
+      color: var(--text-muted);
+      font-weight: 800;
+      font-size: 0.9rem;
+      padding: 14px 28px;
+      min-height: 48px;
+      border-radius: 8px;
+      text-decoration: none;
+      transition: all 0.2s ease;
+      border: none;
+      cursor: pointer;
+      font-family: 'Nunito', sans-serif;
+      width: 100%;
+    }
+    .precio-cta:hover { opacity: 0.88; transform: translateY(-1px); }
+    .precio-cta:focus-visible { outline: 3px solid var(--accent); outline-offset: 2px; }
+    .precio-cta:active { transform: translateY(0); }
+    .destacado .precio-cta {
+      background: var(--accent);
+      color: var(--white);
+      box-shadow: 0 6px 20px rgba(232,114,74,0.35);
+    }
+    .precio-nota {
+      margin-top: 28px;
+      padding: 16px 20px;
+      background: var(--accent-light);
+      border-left: 4px solid var(--accent);
+      border-radius: 8px;
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      max-width: 760px;
+      line-height: 1.65;
+    }
+    .precio-nota strong { color: var(--accent-dark); }
+
+    /*  RESERVA  */
+    #reserva {
+      background: linear-gradient(135deg, var(--accent-dark) 0%, var(--accent) 50%, #F5A030 100%);
+      padding: 96px 0;
+      position: relative;
+      overflow: hidden;
+    }
+    #reserva::before {
+      content: '';
+      position: absolute;
+      top: -100px; right: -100px;
+      width: 500px; height: 500px;
+      border-radius: 50%;
+      border: 2px solid rgba(255,255,255,0.08);
+    }
+    #reserva::after {
+      content: '';
+      position: absolute;
+      bottom: -80px; left: -60px;
+      width: 300px; height: 300px;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.04);
+    }
+    .reserva-inner {
+      position: relative;
+      z-index: 1;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 48px;
+      align-items: start;
+    }
+    .reserva-copy { color: var(--white); }
+    .reserva-eyebrow {
+      font-size: 11px;
+      font-weight: 800;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      background: rgba(255,255,255,0.18);
+      display: inline-block;
+      padding: 4px 12px;
+      border-radius: 20px;
+      margin-bottom: 16px;
+    }
+    .reserva-title {
+      font-size: clamp(1.5rem, 3.5vw, 2.2rem);
+      font-weight: 700;
+      line-height: 1.2;
+      margin-bottom: 20px;
+      letter-spacing: 0.02em;
+    }
+    .antibooking-block {
+      background: rgba(255,255,255,0.12);
+      backdrop-filter: blur(8px);
+      border: 1px solid rgba(255,255,255,0.2);
+      border-radius: var(--radius);
+      padding: 24px;
+      margin-bottom: 24px;
+    }
+    .antibooking-title {
+      font-size: 0.95rem;
+      font-weight: 900;
+      color: var(--gold-light);
+      margin-bottom: 14px;
+      letter-spacing: 0.04em;
+    }
+    .antibooking-items { display: flex; flex-direction: column; gap: 10px; }
+    .antibooking-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      font-size: 0.88rem;
+      color: rgba(255,255,255,0.92);
+      line-height: 1.55;
+    }
+    .antibooking-item .icon {
+      color: var(--gold-light);
+      margin-top: 2px;
+      margin-right: 0;
+    }
+    .reserva-manifesto {
+      font-size: clamp(1rem, 2vw, 1.2rem);
+      font-weight: 800;
+      color: var(--white);
+      text-align: center;
+      padding: 16px 20px;
+      background: rgba(255,255,255,0.1);
+      border-radius: var(--radius);
+      border: 1px solid rgba(255,255,255,0.2);
+      letter-spacing: 0.02em;
+      line-height: 1.5;
+    }
+    .reserva-form-wrap {
+      background: var(--white);
+      border-radius: var(--radius);
+      padding: 32px 28px;
+      box-shadow: 0 16px 48px rgba(0,0,0,0.15);
+    }
+    .form-title {
+      font-size: 1.1rem;
+      font-weight: 900;
+      color: var(--text);
+      margin-bottom: 6px;
+    }
+    .form-subtitle {
+      font-size: 0.82rem;
+      color: var(--text-muted);
+      margin-bottom: 22px;
+      line-height: 1.5;
+    }
+    .form-group { margin-bottom: 16px; }
+    .form-group label {
+      display: block;
+      font-size: 0.8rem;
+      font-weight: 800;
+      color: var(--text);
+      margin-bottom: 6px;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+    }
+    .form-group input,
+    .form-group select {
+      width: 100%;
+      padding: 12px 14px;
+      border: 1.5px solid var(--border);
+      border-radius: 8px;
+      font-family: 'Nunito', sans-serif;
+      font-size: 0.92rem;
+      color: var(--text);
+      background: var(--white);
+      transition: border-color 0.2s;
+      outline: none;
+    }
+    .form-group input:hover,
+    .form-group select:hover { border-color: #D9B5A9; }
+    .form-group input:focus,
+    .form-group select:focus { border-color: var(--accent); box-shadow: 0 0 0 3px rgba(232,114,74,0.12); }
+    .form-submit {
+      width: 100%;
+      background: var(--accent);
+      color: var(--white);
+      font-family: 'Nunito', sans-serif;
+      font-size: 1rem;
+      font-weight: 900;
+      padding: 14px 28px;
+      min-height: 48px;
+      border-radius: 8px;
+      border: none;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      margin-top: 4px;
+    }
+    .form-submit:hover { background: var(--accent-dark); transform: translateY(-1px); }
+    .form-submit:focus-visible { outline: 3px solid var(--white); outline-offset: 2px; }
+    .form-submit:active { transform: translateY(0); }
+    .form-disclaimer {
+      font-size: 0.72rem;
+      color: #999;
+      margin-top: 12px;
+      text-align: center;
+      font-style: italic;
+    }
+
+    /*  FOOTER  */
+    footer {
+      background: var(--text);
+      color: rgba(255,255,255,0.6);
+      text-align: center;
+      padding: 28px 20px;
+      font-size: 0.82rem;
+    }
+    footer a { color: var(--accent); text-decoration: none; font-weight: 700; }
+    footer a:hover { text-decoration: underline; }
+    .footer-disclaimer {
+      margin-top: 6px;
+      font-size: 12px;
+      color: #999;
+      opacity: 1;
+    }
+
+    /*  RESPONSIVE  */
+    @media (max-width: 1024px) {
+      .precios-grid { max-width: 100%; }
+      .reserva-inner { gap: 32px; }
+    }
+
+    @media (max-width: 768px) {
+      #hero { padding: 64px 20px 52px; }
+      .hero-stats { gap: 20px; }
+      .hero-title { font-size: 2rem; }
+
+      #clases, #horario, #precios, #reserva { padding: 64px 0; }
+
+      .section-title { font-size: 1.8rem; }
+
+      .clases-grid { grid-template-columns: 1fr; }
+      .clase-card { padding: 24px; }
+
+      .precios-grid {
+        grid-template-columns: 1fr;
+        max-width: 420px;
+      }
+      .precio-card { padding: 24px 20px; }
+      .precio-card.destacado { transform: scale(1); margin-top: 20px; }
+
+      .reserva-inner { grid-template-columns: 1fr; gap: 32px; }
+      .reserva-copy { order: 1; }
+      .reserva-form-wrap { order: 2; }
+    }
+
+    @media (max-width: 480px) {
+      .hero-stats { gap: 16px; }
+      .hero-stat-num { font-size: 1.3rem; }
+      .reserva-form-wrap { padding: 24px 18px; }
+
+      nav { overflow-x: auto; }
+    }
+
+    @media (max-width: 375px) {
+      .hero-title { font-size: 2rem; }
+      .precios-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+  <!--
+       1. HERO
+   -->
+  <section id="hero">
+    <div class="container">
+      <div class="hero-inner">
+        <div class="hero-eyebrow">
+          <span></span>
+          Madrid · Pilates & Yoga
+        </div>
+        <h1 class="hero-title">Centro<br>Inti</h1>
+        <p class="hero-subtitle">Reserva directa · Sin comisiones</p>
+        <p class="hero-tagline">
+          Cada reserva que entra por Booking<br>
+          <strong>lleva una comisión que nunca ves.</strong>
+        </p>
+        <p class="hero-sub-tagline">
+          Tu espacio, tu energía, tu comunidad. Una web propia significa que cada euro que paga tu alumno llega íntegro a ti — sin intermediarios, sin comisiones, sin depender de plataformas.
+        </p>
+        <a class="cta-btn" href="#reserva">
+          <span class="icon"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></span>Reserva directamente
+        </a>
+        <div class="hero-stats">
+          <div class="hero-stat">
+            <div class="hero-stat-num">0%</div>
+            <div class="hero-stat-label">
+              <span class="icon" style="color:rgba(255,255,255,0.7)"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+              comisiones
+            </div>
+          </div>
+          <div class="hero-stat">
+            <div class="hero-stat-num">3</div>
+            <div class="hero-stat-label">
+              <span class="icon" style="color:rgba(255,255,255,0.7)"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M6 4v16M18 4v16M3 8h3M18 8h3M3 16h3M18 16h3M6 12h12"/></svg></span>
+              disciplinas
+            </div>
+          </div>
+          <div class="hero-stat">
+            <div class="hero-stat-num">100%</div>
+            <div class="hero-stat-label">
+              <span class="icon" style="color:rgba(255,255,255,0.7)"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2l2.4 7.4H22l-6.2 4.5 2.4 7.4L12 17l-6.2 4.3 2.4-7.4L2 9.4h7.6z"/></svg></span>
+              tuyo
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!--
+       2. CLASES
+   -->
+  <section id="clases">
+    <div class="container">
+      <div class="clases-header fade-in">
+        <span class="section-tag">Clases disponibles</span>
+        <h2 class="section-title">Elige tu práctica</h2>
+        <p class="section-sub">Grupos reducidos, instructores certificados y un ambiente que te hace querer volver cada semana.</p>
+      </div>
+      <div class="clases-grid">
+
+        <div class="clase-card fade-in">
+          <div class="clase-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M6 4v16M18 4v16M3 8h3M18 8h3M3 16h3M18 16h3M6 12h12"/></svg>
+          </div>
+          <div class="clase-nombre">Pilates Reformer</div>
+          <p class="clase-desc">Trabaja con la resistencia del reformer para fortalecer el centro de tu cuerpo, mejorar la postura y ganar una movilidad que notarás en tu día a día. Intensidad real, resultados visibles.</p>
+          <div class="clase-meta">
+            <span class="meta-pill plazas">
+              <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+              3 plazas libres
+            </span>
+            <span class="meta-pill nivel">Todos los niveles</span>
+          </div>
+        </div>
+
+        <div class="clase-card fade-in">
+          <div class="clase-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M6 4v16M18 4v16M3 8h3M18 8h3M3 16h3M18 16h3M6 12h12"/></svg>
+          </div>
+          <div class="clase-nombre">Pilates Mat</div>
+          <p class="clase-desc">La base de todo. En el suelo, solo con tu cuerpo y la respiración, construyes fuerza funcional y conciencia corporal que ninguna máquina puede darte. Ideal para empezar o profundizar.</p>
+          <div class="clase-meta">
+            <span class="meta-pill plazas">
+              <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+              6 plazas libres
+            </span>
+            <span class="meta-pill nivel">Principiante / Medio</span>
+          </div>
+        </div>
+
+        <div class="clase-card fade-in">
+          <div class="clase-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M2 22c1.25-.987 2.27-1.975 3.9-2.975C7.86 17.95 10.5 17 12 17c1.5 0 4.14.95 6.1 2.025C19.73 20.025 20.75 21.013 22 22"/><path d="M22 2s-4 0-8 4c-4 4-4 8-4 8s4 0 8-4 4-8 4-8z"/></svg>
+          </div>
+          <div class="clase-nombre">Yoga</div>
+          <p class="clase-desc">Conecta movimiento, respiración y presencia en sesiones diseñadas para que salgas con la cabeza despejada y el cuerpo en equilibrio. Porque moverse bien es también cuidarse por dentro.</p>
+          <div class="clase-meta">
+            <span class="meta-pill plazas">
+              <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+              5 plazas libres
+            </span>
+            <span class="meta-pill nivel">Abierto · Todos los niveles</span>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+
+  <!--
+       3. HORARIO
+   -->
+  <section id="horario">
+    <div class="container">
+      <div class="horario-header fade-in">
+        <span class="section-tag">Horario semanal</span>
+        <h2 class="section-title">
+          <span class="icon" style="color:var(--accent)"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg></span>Encuentra tu hueco
+        </h2>
+        <p class="section-sub">Clases de lunes a sábado. Grupos pequeños para que el instructor te conozca por tu nombre.</p>
+      </div>
+      <div class="table-wrap fade-in">
+        <table class="horario-table">
+          <thead>
+            <tr>
+              <th>Clase</th>
+              <th>Lunes</th>
+              <th>Martes</th>
+              <th>Miércoles</th>
+              <th>Jueves</th>
+              <th>Viernes</th>
+              <th>Sábado</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Pilates Reformer</td>
+              <td><div class="slot"><span class="slot-time">09:00</span><span class="slot-info">4 plazas</span></div></td>
+              <td><span class="empty-cell">—</span></td>
+              <td><div class="slot"><span class="slot-time">09:00</span><span class="slot-info">4 plazas</span></div></td>
+              <td><span class="empty-cell">—</span></td>
+              <td><div class="slot"><span class="slot-time">09:00</span><span class="slot-info">4 plazas</span></div></td>
+              <td><div class="slot"><span class="slot-time">10:30</span><span class="slot-info">4 plazas</span></div></td>
+            </tr>
+            <tr>
+              <td>Pilates Reformer</td>
+              <td><div class="slot"><span class="slot-time">19:00</span><span class="slot-info">4 plazas</span></div></td>
+              <td><div class="slot"><span class="slot-time">19:00</span><span class="slot-info">4 plazas</span></div></td>
+              <td><div class="slot"><span class="slot-time">19:00</span><span class="slot-info">4 plazas</span></div></td>
+              <td><div class="slot"><span class="slot-time">19:00</span><span class="slot-info">4 plazas</span></div></td>
+              <td><div class="slot"><span class="slot-time">19:00</span><span class="slot-info">4 plazas</span></div></td>
+              <td><span class="empty-cell">—</span></td>
+            </tr>
+            <tr>
+              <td>Pilates Mat</td>
+              <td><div class="slot"><span class="slot-time">10:15</span><span class="slot-info">8 plazas</span></div></td>
+              <td><div class="slot"><span class="slot-time">10:15</span><span class="slot-info">8 plazas</span></div></td>
+              <td><span class="empty-cell">—</span></td>
+              <td><div class="slot"><span class="slot-time">10:15</span><span class="slot-info">8 plazas</span></div></td>
+              <td><span class="empty-cell">—</span></td>
+              <td><div class="slot"><span class="slot-time">09:00</span><span class="slot-info">8 plazas</span></div></td>
+            </tr>
+            <tr>
+              <td>Pilates Mat</td>
+              <td><div class="slot"><span class="slot-time">20:15</span><span class="slot-info">8 plazas</span></div></td>
+              <td><span class="empty-cell">—</span></td>
+              <td><div class="slot"><span class="slot-time">20:15</span><span class="slot-info">8 plazas</span></div></td>
+              <td><div class="slot"><span class="slot-time">20:15</span><span class="slot-info">8 plazas</span></div></td>
+              <td><div class="slot"><span class="slot-time">20:15</span><span class="slot-info">8 plazas</span></div></td>
+              <td><span class="empty-cell">—</span></td>
+            </tr>
+            <tr>
+              <td>Yoga</td>
+              <td><span class="empty-cell">—</span></td>
+              <td><div class="slot"><span class="slot-time">08:00</span><span class="slot-info">10 plazas</span></div></td>
+              <td><div class="slot"><span class="slot-time">08:00</span><span class="slot-info">10 plazas</span></div></td>
+              <td><div class="slot"><span class="slot-time">08:00</span><span class="slot-info">10 plazas</span></div></td>
+              <td><span class="empty-cell">—</span></td>
+              <td><div class="slot"><span class="slot-time">11:45</span><span class="slot-info">10 plazas</span></div></td>
+            </tr>
+            <tr>
+              <td>Yoga</td>
+              <td><div class="slot"><span class="slot-time">21:00</span><span class="slot-info">10 plazas</span></div></td>
+              <td><span class="empty-cell">—</span></td>
+              <td><div class="slot"><span class="slot-time">21:00</span><span class="slot-info">10 plazas</span></div></td>
+              <td><span class="empty-cell">—</span></td>
+              <td><div class="slot"><span class="slot-time">21:00</span><span class="slot-info">10 plazas</span></div></td>
+              <td><span class="empty-cell">—</span></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+
+  <!--
+       4. PRECIOS
+   -->
+  <section id="precios">
+    <div class="container">
+      <div class="precios-header fade-in">
+        <span class="section-tag">Tarifas</span>
+        <h2 class="section-title">
+          <span class="icon" style="color:var(--accent)"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"/><line x1="7" y1="7" x2="7.01" y2="7"/></svg></span>Invierte en tu bienestar
+        </h2>
+        <p class="section-sub">Sin letra pequeña, sin cuotas de inscripción, sin sorpresas. Tú eliges cómo practicar.</p>
+      </div>
+      <div class="precios-grid fade-in">
+
+        <!-- Clase suelta -->
+        <div class="precio-card">
+          <div class="precio-tipo">Flexibilidad total</div>
+          <div class="precio-nombre">Clase suelta</div>
+          <div class="precio-amount"><sup>€</sup>18</div>
+          <div class="precio-unit">por sesión</div>
+          <div class="precio-orientativo">(precio orientativo)</div>
+          <ul class="precio-features">
+            <li><span class="icon"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>Acceso a cualquier clase disponible</li>
+            <li><span class="icon"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>Sin compromiso de permanencia</li>
+            <li><span class="icon"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>Reserva con 24h de antelación</li>
+            <li><span class="icon"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>Cancelación gratuita hasta 12h antes</li>
+          </ul>
+          <a href="#reserva" class="precio-cta">Reservar una clase</a>
+        </div>
+
+        <!-- Bono mensual (destacado) -->
+        <div class="precio-card destacado">
+          <div class="precio-tipo">La elección inteligente</div>
+          <div class="precio-nombre">Bono mensual · 10 clases</div>
+          <div class="precio-amount"><sup>€</sup>140</div>
+          <div class="precio-unit">10 clases · válidas 45 días</div>
+          <div class="precio-orientativo">(precio orientativo)</div>
+          <div class="ahorro-badge">
+            <span class="icon" style="margin-right:4px;color:inherit"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2l2.4 7.4H22l-6.2 4.5 2.4 7.4L12 17l-6.2 4.3 2.4-7.4L2 9.4h7.6z"/></svg></span>Ahorras 40€ al mes — 14€ por clase
+          </div>
+          <ul class="precio-features">
+            <li><span class="icon"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>10 clases a tu ritmo, sin fecha fija</li>
+            <li><span class="icon"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>Combina Reformer, Mat y Yoga libremente</li>
+            <li><span class="icon"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>Prioridad en reserva para alumnos con bono</li>
+            <li><span class="icon"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>Acceso a talleres exclusivos de bonistas</li>
+            <li><span class="icon"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>Cancelación hasta 6h antes sin penalización</li>
+          </ul>
+          <a href="#reserva" class="precio-cta">Quiero el bono mensual</a>
+        </div>
+
+      </div>
+      <div class="precio-nota fade-in">
+        <strong>¿Por qué reservar aquí y no en Booking?</strong> Cuando reservas directamente, el 100% de tu pago llega al estudio. Booking se queda entre un 15% y un 25% de comisión por cada reserva. Reservar aquí es también una forma de apoyar a un negocio local.
+      </div>
+    </div>
+  </section>
+
+
+  <!--
+       5. RESERVA DIRECTA
+   -->
+  <section id="reserva">
+    <div class="container">
+      <div class="reserva-inner">
+
+        <div class="reserva-copy fade-in">
+          <span class="reserva-eyebrow">Reserva directa</span>
+          <h2 class="reserva-title">Tu plaza, sin que nadie se lleve su parte</h2>
+
+          <div class="antibooking-block">
+            <div class="antibooking-title">¿Qué pasa cuando reservas por Booking?</div>
+            <div class="antibooking-items">
+              <div class="antibooking-item">
+                <span class="icon"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="15" y1="9" x2="9" y2="15"/><line x1="9" y1="9" x2="15" y2="15"/></svg></span>
+                Booking cobra entre un 15% y un 25% de comisión por cada reserva procesada.
+              </div>
+              <div class="antibooking-item">
+                <span class="icon"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="15" y1="9" x2="9" y2="15"/><line x1="9" y1="9" x2="15" y2="15"/></svg></span>
+                No tienes los datos de contacto de tus alumnos: son de Booking, no tuyos.
+              </div>
+              <div class="antibooking-item">
+                <span class="icon"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="15" y1="9" x2="9" y2="15"/><line x1="9" y1="9" x2="15" y2="15"/></svg></span>
+                No puedes comunicarte directamente con ellos ni fidelizarlos a largo plazo.
+              </div>
+              <div class="antibooking-item">
+                <span class="icon"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="15" y1="9" x2="9" y2="15"/><line x1="9" y1="9" x2="15" y2="15"/></svg></span>
+                Dependes de su algoritmo para aparecer — y eso puede cambiar en cualquier momento.
+              </div>
+            </div>
+          </div>
+
+          <div class="reserva-manifesto">
+            Sin comisiones.<br>
+            Sin intermediarios.<br>
+            100% para ti.
+          </div>
+        </div>
+
+        <div class="fade-in">
+          <div class="reserva-form-wrap">
+            <div class="form-title">Reservar una clase</div>
+            <div class="form-subtitle">Rellena tus datos y nos ponemos en contacto contigo para confirmar tu plaza.</div>
+            <form onsubmit="handleSubmit(event)" novalidate>
+              <div class="form-group">
+                <label for="nombre">Nombre completo</label>
+                <input type="text" id="nombre" name="nombre" placeholder="Ej: María García" autocomplete="name" required />
+              </div>
+              <div class="form-group">
+                <label for="email">Email</label>
+                <input type="email" id="email" name="email" placeholder="tu@email.com" autocomplete="email" required />
+              </div>
+              <div class="form-group">
+                <label for="clase">Clase deseada</label>
+                <select id="clase" name="clase" required>
+                  <option value="">Selecciona una clase</option>
+                  <option value="reformer">Pilates Reformer</option>
+                  <option value="mat">Pilates Mat</option>
+                  <option value="yoga">Yoga</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <label for="fecha">Fecha preferida</label>
+                <input type="date" id="fecha" name="fecha" />
+              </div>
+              <button type="submit" class="form-submit">Solicitar plaza ahora</button>
+              <p class="form-disclaimer">Demo conceptual — LhabiaStudio. Sistema de reserva a implementar.</p>
+            </form>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+
+  <!--
+       6. FOOTER
+   -->
+  <footer>
+    <p>
+      Diseño web por <a href="https://lhabiastudio.com" target="_blank" rel="noopener">LhabiaStudio</a> &mdash; lhabiastudio.com &nbsp;&middot;&nbsp; &copy; 2026
+    </p>
+    <p class="footer-disclaimer">
+      Demo conceptual. No autorizado para uso comercial sin contrato.
+    </p>
+  </footer>
+
+
+  <script>
+    //  Scroll animations via Intersection Observer
+    const fadeEls = document.querySelectorAll('.fade-in');
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.12 });
+
+    fadeEls.forEach((el) => observer.observe(el));
+
+    //  Stagger children inside grids
+    document.querySelectorAll('.clases-grid .clase-card, .precios-grid .precio-card').forEach((el, i) => {
+      el.style.transitionDelay = `${i * 0.1}s`;
+    });
+
+    //  Form submit (demo)
+    function handleSubmit(e) {
+      e.preventDefault();
+      const btn = e.target.querySelector('.form-submit');
+      const original = btn.textContent;
+      btn.textContent = '¡Solicitud recibida!';
+      btn.style.background = 'var(--success)';
+      btn.disabled = true;
+      setTimeout(() => {
+        btn.textContent = original;
+        btn.style.background = '';
+        btn.disabled = false;
+        e.target.reset();
+      }, 3000);
+    }
+  </script>
+</body>
+</html>
